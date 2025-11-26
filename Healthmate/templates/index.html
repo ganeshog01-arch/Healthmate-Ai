@@ -1,238 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖HealthMate AI</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 HealthMate AI</title>
 
-    <style>
-        /* --- Global Styles --- */
-        :root {
-            --primary-color: #4a90e2;
-            --secondary-color: #50e3c2;
-            --accent-color: #ff6b6b;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-color: #333;
-        }
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+<!-- Glassmorphism CSS -->
+<style>
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: hsl(0, 19%, 88%);
+    --accent-color: #ff6b6b;
+    --bg-gradient: linear-gradient(135deg, #eff1eaf5 0%, #96e6a1 100%);
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --text-color: #222;
+    --card-bg: rgba(255,255,255,0.15);
+}
 
-        /* --- Main Container --- */
-        .container {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 550px;
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.8s ease-out;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
 
-        /* --- Header --- */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+body {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
-        .title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+/* Glass container */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+}
 
-        .subtitle {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-top: 0.5rem;
-            font-weight: 300;
-        }
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
-        /* --- Form Elements --- */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+.title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #34495e;
-        }
+.subtitle {
+    font-weight: 300;
+    font-size: 1rem;
+    color: #444;
+    margin-top: 0.3rem;
+}
 
-        textarea {
-            width: 100%;
-            height: 120px;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            resize: vertical;
-            box-sizing: border-box; /* Fixes padding width issue */
-        }
+/* Form elements */
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
 
-        textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
-        }
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.2);
+    color: #222;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.3s;
+}
 
-        /* --- Buttons --- */
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 1rem;
-        }
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(74,144,226,0.3);
+}
 
-        button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
 
-        button:active {
-            transform: scale(0.98);
-        }
+button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
 
-        .voice-btn {
-            background-color: #ffffff;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
+.voice-btn {
+    background: rgba(255,255,255,0.3);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
 
-        .voice-btn:hover {
-            background-color: #ebf5ff;
-        }
+.voice-btn:hover {
+    background: rgba(255,255,255,0.5);
+}
 
-        .analyze-btn {
-            background: linear-gradient(to right, var(--primary-color), #357abd);
-            color: white;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-        }
+.analyze-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
 
-        .analyze-btn:hover {
-            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
-            transform: translateY(-2px);
-        }
+.analyze-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
 
-        /* --- Status & Results --- */
-        #voice-status {
-            text-align: center;
-            height: 20px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            font-style: italic;
-        }
+/* Voice status */
+#voice-status {
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+    color: var(--primary-color);
+}
 
-        .result-section {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-            animation: slideUp 0.5s ease-out;
-        }
+/* Result Section */
+.result-section {
+    margin-top: 25px;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
 
-        .result-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 5px solid var(--primary-color);
-        }
+.result-card {
+    background: rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 14px;
+    border-left: 5px solid var(--primary-color);
+    margin-top: 10px;
+}
 
-        .output-text {
-            white-space: pre-wrap;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
+.output-text {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
 
-        /* --- Emergency Alert --- */
-        .emergency-box {
-            margin-top: 1.5rem;
-            background: #fff5f5;
-            color: #c0392b;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #ffcccc;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: pulse 2s infinite;
-        }
+/* Emergency Alert */
+.emergency-box {
+    margin-top: 18px;
+    background: #ff2d2d;
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: pulse 1.5s infinite;
+}
 
-        .emergency-icon {
-            font-size: 1.5rem;
-        }
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,45,45,0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255,45,45,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,45,45,0); }
+}
 
-        @keyframes slideUp {
-            from { opacity: 0; margin-top: 3rem; }
-            to { opacity: 1; margin-top: 2rem; }
-        }
+/* Loading overlay */
+#loading-overlay {
+    position: absolute;
+    top: 0; left: 0; right:0; bottom:0;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(3px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-        }
-    </style>
+.loader {
+    border: 6px solid rgba(255,255,255,0.3);
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay"><div class="loader"></div></div>
+
     <div class="header">
         <h1 class="title"><i class="fas fa-robot"></i> HealthMate AI</h1>
         <p class="subtitle">Your Intelligent Health Assistant</p>
     </div>
 
-    <form method="POST">
-        <div class="form-group">
-            <label for="symptoms">Describe Your Symptoms</label>
-            <textarea id="symptoms" name="symptoms" placeholder="e.g., I have been feeling dizzy with mild chest pain since morning..." required>{{ symptoms if symptoms else '' }}</textarea>
-        </div>
+    <form method="POST" onsubmit="showLoader()">
+        <label for="symptoms">Describe Your Symptoms</label>
+        <textarea id="symptoms" name="symptoms" placeholder="e.g., I have chest pain and dizziness..." required>{{ symptoms if symptoms else '' }}</textarea>
 
         <div class="button-group">
-            <!-- Voice Button -->
             <button type="button" onclick="startListening()" class="voice-btn">
                 <i class="fas fa-microphone"></i> Speak
             </button>
-            
-            <!-- Submit Button -->
+
             <button type="submit" class="analyze-btn">
                 <i class="fas fa-stethoscope"></i> Analyze
             </button>
@@ -243,75 +249,73 @@
     {% if result %}
     <div class="result-section">
         <h3><i class="fas fa-clipboard-list"></i> Analysis Result</h3>
-        
         <div class="result-card">
             <p class="output-text">{{ result }}</p>
         </div>
 
         {% if emergency %}
         <div class="emergency-box">
-            <i class="fas fa-ambulance emergency-icon"></i>
+            <i class="fas fa-ambulance"></i>
             <div>
                 <strong>Emergency Detected!</strong><br>
-                <small>Redirecting to nearby hospitals on Google Maps...</small>
+                Redirecting to nearby hospitals...
             </div>
         </div>
+        <script>
+            setTimeout(function () {
+                window.open("https://www.google.com/maps/search/hospitals+near+me","_blank");
+            }, 1500);
+        </script>
         {% endif %}
     </div>
-    
-<script>
-    setTimeout(function () {
-        window.open(
-            "https://www.google.com/maps/search/hospitals+near+me",
-            "_blank"
-        );
-    }, 1500); // waits 1.5 seconds before opening
-</script>
     {% endif %}
 </div>
 
-<!-- VOICE INPUT SCRIPT -->
+<!-- VOICE INPUT -->
 <script>
-    function startListening() {
-        const status = document.getElementById("voice-status");
-        const textarea = document.getElementById("symptoms");
+function startListening() {
+    const status = document.getElementById("voice-status");
+    const textarea = document.getElementById("symptoms");
 
-        // Browser compatibility check
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            status.innerHTML = "❌ Voice input not supported in this browser.";
-            status.style.color = "red";
-            return;
-        }
-
-        const recognition = new SpeechRecognition();
-        recognition.lang = "en-US";
-        recognition.interimResults = false;
-        recognition.continuous = false;
-
-        recognition.onstart = function() {
-            status.innerHTML = "🎙 Listening... speak clearly";
-            status.style.color = "#4a90e2";
-        };
-
-        recognition.onresult = function(event) {
-            const spokenText = event.results[0][0].transcript;
-            textarea.value = spokenText;
-            status.innerHTML = "✔ Symptoms captured!";
-            status.style.color = "green";
-        };
-
-        recognition.onerror = function(event) {
-            status.innerHTML = "❌ Error capturing voice. Try again.";
-            status.style.color = "red";
-        };
-
-        recognition.onend = function() {
-            setTimeout(() => status.innerHTML = "", 2000);
-        };
-
-        recognition.start();
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        status.innerHTML = "❌ Voice input not supported.";
+        status.style.color = "red";
+        return;
     }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    recognition.onstart = function() {
+        status.innerHTML = "🎙 Listening...";
+        status.style.color = "#4a90e2";
+    };
+
+    recognition.onresult = function(event) {
+        textarea.value = event.results[0][0].transcript;
+        status.innerHTML = "✔ Captured!";
+        status.style.color = "green";
+    };
+
+    recognition.onerror = function() {
+        status.innerHTML = "❌ Error. Try again.";
+        status.style.color = "red";
+    };
+
+    recognition.onend = function() {
+        setTimeout(() => status.innerHTML = "", 2000);
+    };
+
+    recognition.start();
+}
+
+// Show loader while backend is processing
+function showLoader() {
+    document.getElementById('loading-overlay').style.display = 'flex';
+}
 </script>
 
 </body>
