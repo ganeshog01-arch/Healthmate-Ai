@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HealthMate AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='medical_logo.png') }}" alt="HealthMate Logo" class="logo">
+            <h1>🤖 HealthMate AI</h1>
+            <p>Your AI-powered health assistant</p>
+        </header>
+
+        <form method="POST">
+            <textarea name="symptoms" placeholder="Enter your symptoms (e.g., chest pain, dizziness, fever)"></textarea>
+            <button type="submit"><i class="fas fa-stethoscope"></i> Analyze Symptoms</button>
+        </form>
+
+        {% if emergency %}
+        <script>
+            // Open Google Maps with nearby hospitals
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+                    var url = "https://www.google.com/maps/search/hospitals/@" + lat + "," + lon + ",15z";
+                    window.open(url, "_blank");
+                }, function(error) {
+                    window.open("https://www.google.com/maps/search/hospitals+near+me/", "_blank");
+                });
+            } else {
+                window.open("https://www.google.com/maps/search/hospitals+near+me/", "_blank");
+            }
+
+            document.body.innerHTML = `
+                <div class="emergency-alert">
+                    <i class="fas fa-ambulance"></i> EMERGENCY CASE! SEEK IMMEDIATE MEDICAL HELP!
+                </div>
+            `;
+        </script>
+
+        {% elif result %}
+        <div class="results">
+            <div class="result-card">
+                <p><strong>Your Input:</strong> {{ symptoms }}</p>
+
+                {% if severity %}
+                <p><strong>Severity:</strong> 
+                    <span class="severity {{ severity_class }}">{{ severity }}</span>
+                </p>
+                {% endif %}
+
+                {% if disease %}
+                <p><strong><i class="fas fa-notes-medical"></i> Possible Disease:</strong> {{ disease }}</p>
+                {% endif %}
+
+                {% if remedies %}
+                <p><strong><i class="fas fa-pills"></i> Remedies / Medicines:</strong> {{ remedies }}</p>
+                {% endif %}
+
+                {% if doctor_advice %}
+                <p><strong><i class="fas fa-user-md"></i> When to Seek Doctor:</strong> {{ doctor_advice }}</p>
+                {% endif %}
+
+                {% if prevention %}
+                <p><strong><i class="fas fa-shield-alt"></i> Prevention:</strong> {{ prevention }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

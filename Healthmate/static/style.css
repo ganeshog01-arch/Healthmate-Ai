@@ -1,0 +1,120 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f2f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    resize: none;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #084298;
+}
+
+button i {
+    margin-right: 8px;
+}
+
+
+.results {
+    margin-top: 20px;
+}
+
+.result-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.05);
+}
+
+.result-card p {
+    margin: 12px 0;
+    font-size: 1em;
+}
+
+
+.severity {
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 8px;
+    color: white;
+}
+
+.severity.low { background-color: #28a745; }
+.severity.medium { background-color: #ffc107; }
+.severity.high { background-color: #fd7e14; }
+.severity.emergency { background-color: #dc3545; }
+
+/* Emergency alert*/
+.emergency-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #dc3545;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.emergency-alert i {
+    margin-right: 15px;
+}
+
+/* Response*/
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
